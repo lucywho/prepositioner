@@ -13,14 +13,9 @@ app.use(compression());
 app.use(
     cookieSession({
         secret: "It'll be fiiiine",
-        maxAge: 1000 * 60 * 60 * 24 * 14
+        maxAge: 1000 * 60 * 60 * 24 * 14,
     })
 );
-
-app.use(cookieSessionMiddleware);
-io.use(function(socket, next) {
-    cookieSessionMiddleware(socket.request, socket.request.res, next);
-});
 
 app.use(express.static("public"));
 
@@ -28,7 +23,7 @@ app.use(express.json());
 
 app.use(
     express.urlencoded({
-        extended: false
+        extended: false,
     })
 );
 
@@ -50,28 +45,24 @@ if (process.env.NODE_ENV != "production") {
     app.use(
         "/bundle.js",
         require("http-proxy-middleware")({
-            target: "http://localhost:8081/"
+            target: "http://localhost:8081/",
         })
     );
 } else {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
-app.get("/welcome", (req, res) => {
-    console.log("/welcome route hit");
-    if (req.session.userId) {
-        res.redirect("/");
-    } else {
-        res.sendFile(__dirname + "/index.html");
-    }
-});
+// app.get("/welcome", (req, res) => {
+//     console.log("/welcome route hit");
+//     if (req.session.userId) {
+//         res.redirect("/");
+//     } else {
+//         res.sendFile(__dirname + "/index.html");
+//     }
+// });
 
 app.get("*", function(req, res) {
-    if (!req.session.userId) {
-        res.redirect("/welcome");
-    } else {
-        res.sendFile(__dirname + "/index.html");
-    }
+    res.sendFile(__dirname + "/index.html");
 });
 
 //_________SERVER LISTENING_______
