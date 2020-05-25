@@ -4,27 +4,21 @@
 }
 
 body {
-    min-height: 100vh;
+    height: 100vh;
     font-family: "Roboto", sans-serif;
 }
 
 #startelem {
-    min-height: 100vh;
-    overflow: auto;
-    border: red 1px solid;
+    height: 100vh;
 }
 
 .app-container {
-    min-height: 100vh;
+    height: 100%;
     padding: 2px;
-    border: green 1px solid;
 }
 
 /*strapline*/
 .strapline {
-    height: 10%;
-    min-height: 100px;
-    border: orange 1px solid;
     display: flex;
     flex-direction: wrap;
     justify-content: space-between;
@@ -34,39 +28,71 @@ body {
     height: 100px;
 }
 
-button {
-    font-family: inherit;
-    font-size: 20px;
-    color: white;
-    background-color: rgb(35, 129, 54);
-    height: 100px;
-    padding: 5px;
-}
-
 /*app contents*/
 .app-contents {
-    min-height: 90%;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     color: rgb(35, 129, 54);
     font-family: inherit;
-    /* border: blue 1px solid; */
+    border: blue 1px solid;
 }
 
+/*splash.js*/
+
 .splash {
-    min-height: 90%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: rgb(35, 129, 54);
+    color: #11270b;
     font-family: inherit;
-    border: salmon 1px solid;
+}
+
+.logo {
+    height: 300px;
 }
 
 .splash-text {
     padding: 5px;
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
+}
+
+#start {
+    font-family: inherit;
+    font-size: 20px;
+    margin: 10px 0;
+    color: white;
+    background-color: rgb(35, 129, 54);
+    height: 50px;
+    padding: 5px 10px;
+    border: solid 1px rgb(35, 129, 54);
+}
+
+/*questions.js*/
+
+.question-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: red 1px solid;
+}
+
+.answer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }

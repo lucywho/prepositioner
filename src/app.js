@@ -19,9 +19,13 @@ export default function App() {
                 </div>
 
                 <div className="app-contents">
-                    <Route path="/splash" render={() => <Splash />} />
+                    <Route exact path="/splash" render={() => <Splash />} />
 
-                    <Route path="/questions" render={() => <Questions />} />
+                    <Route
+                        exact
+                        path="/questions"
+                        render={() => <Questions />}
+                    />
                 </div>
             </div>
         </BrowserRouter>

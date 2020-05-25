@@ -61,6 +61,10 @@ if (process.env.NODE_ENV != "production") {
 //     }
 // });
 
+app.get("/", (req, res) => {
+    res.redirect("/splash");
+});
+
 app.get("*", function(req, res) {
     res.sendFile(__dirname + "/index.html");
 });

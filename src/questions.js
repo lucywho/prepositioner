@@ -13,6 +13,15 @@ export default function Questions() {
     return (
         <div className="question-container">
             <div> display questions here </div>
+            <div className="answer-container">
+                <textarea name="answer" placeholder="type answer here" />
+                <button name="feedback">X or tick</button>
+            </div>
+            <div className="nav-buttons">
+                <button>Submit answer</button>
+                <button>Show answer</button>
+                <button>Next question</button>
+            </div>
         </div>
     );
 }
