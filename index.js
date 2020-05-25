@@ -61,6 +61,42 @@ if (process.env.NODE_ENV != "production") {
 //     }
 // });
 
+app.get("/testquestions", (req, res) => {
+    console.log("/testquestions route hit");
+
+    for (var numbers = [], i = 1; i < 42; ++i) {
+        numbers[i] = i;
+    }
+
+    function shuffle(array) {
+        var temp,
+            current,
+            upper = array.length;
+        if (upper)
+            while (--upper) {
+                current = Math.floor(Math.random() * (upper + 1));
+                temp = array[current];
+                array[current] = array[upper];
+                array[upper] = temp;
+            }
+        return array;
+    }
+    numbers = shuffle(numbers);
+    questions = numbers.slice([0], [10]);
+
+    // console.log("questions: ", questions);
+
+    db.getQuestions(questions)
+        .then((results) => {
+            // console.log("getquestions results: ", results.rows);
+
+            res.json({ results });
+        })
+        .catch((err) => {
+            console.log("error in getQuestions: ", err);
+        });
+}); //end of testquestions
+
 app.get("/", (req, res) => {
     res.redirect("/splash");
 });

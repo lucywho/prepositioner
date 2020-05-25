@@ -6,6 +6,7 @@
 body {
     height: 100vh;
     font-family: "Roboto", sans-serif;
+    background-color: #2ceaa3;
 }
 
 #startelem {
@@ -36,7 +37,6 @@ body {
     align-items: center;
     color: rgb(35, 129, 54);
     font-family: inherit;
-    border: blue 1px solid;
 }
 
 /*splash.js*/
@@ -47,7 +47,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #11270b;
+    color: #2a6041;
     font-family: inherit;
 }
 
@@ -66,7 +66,7 @@ body {
     font-size: 20px;
     margin: 10px 0;
     color: white;
-    background-color: rgb(35, 129, 54);
+    background-color: #238136;
     height: 50px;
     padding: 5px 10px;
     border: solid 1px rgb(35, 129, 54);
@@ -76,14 +76,15 @@ body {
 
 .question-container {
     height: 100%;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border: red 1px solid;
 }
 
 .answer-container {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -93,6 +94,47 @@ body {
 .nav-buttons {
     display: flex;
     flex-direction: row;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
+}
+
+.nav-buttons > button {
+    font-family: inherit;
+    font-weight: bold;
+    height: 40px;
+    padding: 5px;
+    margin-top: 20px;
+    background-color: white;
+    border: 1px #238136 solid;
+}
+
+.nav-buttons > button:hover {
+    background-color: #6bffb8;
+}
+
+.German,
+.English {
+    min-width: 300px;
+    border: rgb(35, 129, 54) 1px solid;
+    height: 50px;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+textarea {
+    min-width: 200px;
+    border: hsl(132, 57%, 32%) 1px solid;
+    height: 50px;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.feedback {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    margin: 5px;
+    background-color: white;
+    border: 1px #238136 solid;
 }

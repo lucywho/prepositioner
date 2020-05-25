@@ -6,16 +6,20 @@ import { Link } from "react-router-dom";
 
 export default function Questions() {
     useEffect(() => {
-        //axios request for ten random questions
-        //code to loop through and deliver one at a time
+        axios.get(`/testquestions`).then((response) => {
+            // console.log("/testquestions response", response.data.results.rows);
+            const testquestions = response.data.results.rows; //array of objects
+            console.log("test questions", testquestions);
+        });
     });
 
     return (
         <div className="question-container">
-            <div> display questions here </div>
+            <div className="German"> display German questions here </div>
+            <div className="English">display English translation here</div>
             <div className="answer-container">
-                <textarea name="answer" placeholder="type answer here" />
-                <button name="feedback">X or tick</button>
+                <textarea name="answer" placeholder="type answer here..." />
+                <button className="feedback">X or tick</button>
             </div>
             <div className="nav-buttons">
                 <button>Submit answer</button>
