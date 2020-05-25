@@ -116,8 +116,8 @@ body {
 .German,
 .English {
     min-width: 400px;
-    border: rgb(35, 129, 54) 1px solid;
-    background-color: aliceblue;
+    border: rgb(35, 129, 54) 5px double;
+    background-color: white;
     font-size: 20px;
     height: 50px;
     padding: 5px;
@@ -125,6 +125,11 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.English {
+    color: white;
+    background-color: #2a6041;
 }
 
 textarea {

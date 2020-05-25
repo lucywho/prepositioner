@@ -23,21 +23,36 @@ export default function Questions() {
     console.log("test questions", testquestions);
 
     let question = testquestions[0];
+    let i = 1;
 
     //method called by next button, iterates through testquestions and returns next
+    function next() {
+        console.log("clicked on next");
+        question = testquestions[i];
+        console.log("question after next", question);
+        i++;
+    }
+
+    function submit() {
+        console.log("clicked on submit");
+    }
+
+    function show() {
+        console.log("clicked on show answer");
+    }
 
     return (
         <div className="question-container">
             {question && (
                 <div>
+                    <div className="English">
+                        <p>{question.trans}</p>
+                    </div>
                     <div className="German">
                         <p>
                             {" "}
                             {question.first} {"___"} {question.second}
                         </p>
-                    </div>
-                    <div className="English">
-                        <p>{question.trans}</p>
                     </div>
                     <div className="answer-container">
                         <textarea
@@ -47,9 +62,9 @@ export default function Questions() {
                         <button className="feedback">X or tick</button>
                     </div>
                     <div className="nav-buttons">
-                        <button>Submit answer</button>
-                        <button>Show answer</button>
-                        <button>Next question</button>
+                        <button onClick={submit}>Submit answer</button>
+                        <button onClick={show}>Show answer</button>
+                        <button onClick={next}>Next question</button>
                     </div>
                 </div>
             )}
