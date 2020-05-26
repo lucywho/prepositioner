@@ -7,6 +7,8 @@ export default function Questions() {
     const [question, setQuestion] = useState({});
     const [feedback, setFeedback] = useState("❓");
     const [score, setScore] = useState(0);
+    const [correct, setCorrect] = useState(true);
+
     let i = score;
 
     useEffect(() => {
@@ -28,9 +30,17 @@ export default function Questions() {
 
         testquestions.shift();
 
-        setQuestion(testquestions[0]);
+        if (testquestions.length > 0) {
+            setQuestion(testquestions[0]);
 
-        setTestQuestions(testquestions);
+            setTestQuestions(testquestions);
+        } else {
+            setQuestion("");
+        }
+
+        // else {
+        //     console.log("do something");
+        // }
 
         //TO DO: if testquestion =[], render end of test (final score??)
     }
@@ -51,10 +61,17 @@ export default function Questions() {
             console.log("score", score);
 
             setScore(i);
+            setCorrect(true);
         } else {
             console.log("failure");
             setFeedback("❌");
+            setCorrect(false);
         }
+    }
+
+    function again() {
+        setFeedback("❓");
+        document.getElementById("answer").value = "";
     }
 
     function show() {
@@ -67,7 +84,12 @@ export default function Questions() {
         //TO DO: add hidden field for display?
     }
 
-    //console.log("testquestions0", testquestions[0]);
+    function end() {
+        console.log("end test clicked");
+    }
+    function closeModal() {
+        console.log("close modal clicked");
+    }
 
     return (
         <div className="question-container">
@@ -95,8 +117,25 @@ export default function Questions() {
                     </div>
                     <div className="nav-buttons">
                         <button onClick={submit}>Submit answer</button>
-                        <button onClick={show}>Show answer</button>
-                        <button onClick={next}>Next question</button>
+                        {!correct && (
+                            <>
+                                <button onClick={again}>Try Again</button>
+                                <button onClick={show}>Show answer</button>
+                            </>
+                        )}
+                        {testquestions.length > 1 && (
+                            <button onClick={next}>Next question</button>
+                        )}
+                        {testquestions.length <= 1 && (
+                            <div className="endmodal">
+                                <p className="modalX" onClick={closeModal}>
+                                    X
+                                </p>
+                                Testing end modal
+                            </div>
+                        )}
+
+                        {/* <button onClick={end}>End Test</button> */}
                     </div>
                 </div>
             )}

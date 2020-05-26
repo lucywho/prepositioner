@@ -80,7 +80,9 @@ app.get("/testquestions", (req, res) => {
         return array;
     }
     numbers = shuffle(numbers);
-    questions = numbers.slice([0], [10]);
+
+    //***CHANGE THIS BACK TO 10 WHEN FINISHED TESTING!***//
+    questions = numbers.slice([0], [1]);
 
     // console.log("questions: ", questions);
 
