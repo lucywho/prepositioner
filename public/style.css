@@ -140,7 +140,7 @@ body {
 }
 
 #answer {
-    width: 300px;
+    width: 250px;
     height: 64px;
     border: hsl(132, 57%, 32%) 1px solid;
     padding: 5px 0 0 5px;
@@ -151,11 +151,19 @@ body {
 }
 
 .feedback {
-    width: 60px;
+    width: 50px;
     height: 100%;
     padding: 10px;
+    font-size: 20px;
+    background-color: white;
+    border: 1px #238136 solid;
+}
 
-    font-size: 25px;
+.score {
+    width: 60px;
+    height: 100%;
+    padding: 10px 0;
+    font-size: 20px;
     background-color: white;
     border: 1px #238136 solid;
 }

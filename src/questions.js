@@ -6,6 +6,8 @@ export default function Questions() {
     const [testquestions, setTestQuestions] = useState([]);
     const [question, setQuestion] = useState({});
     const [feedback, setFeedback] = useState("❓");
+    const [score, setScore] = useState(0);
+    let i = score;
 
     useEffect(() => {
         axios
@@ -44,13 +46,14 @@ export default function Questions() {
             console.log("success");
             setFeedback("✔️");
 
-            //if correct, render tick in feedback (and update score)
-            // -- feedback needs conditional
-            // -- work out how to do score (see c4?)
+            i++;
+            console.log("i", i);
+            console.log("score", score);
+
+            setScore(i);
         } else {
             console.log("failure");
             setFeedback("❌");
-            // if incorrect, render x in feedback
         }
     }
 
@@ -88,6 +91,7 @@ export default function Questions() {
                         />
 
                         <button className="feedback">{feedback}</button>
+                        <button className="score">{score}/10</button>
                     </div>
                     <div className="nav-buttons">
                         <button onClick={submit}>Submit answer</button>
