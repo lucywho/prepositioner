@@ -82,7 +82,7 @@ app.get("/testquestions", (req, res) => {
     numbers = shuffle(numbers);
 
     //***CHANGE THIS BACK TO 10 WHEN FINISHED TESTING!***//
-    questions = numbers.slice([0], [1]);
+    questions = numbers.slice([0], [3]);
 
     // console.log("questions: ", questions);
 

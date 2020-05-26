@@ -89,6 +89,7 @@ body {
     align-items: center;
     margin-top: 5px;
     height: 70px;
+    border: red solid 1px;
 }
 
 .nav-buttons {
@@ -149,24 +150,32 @@ body {
     border: hsl(132, 57%, 32%) 1px solid;
     padding: 5px 0 0 5px;
     text-align: center;
+    word-wrap: normal;
     font-family: inherit;
     font-size: 18px;
     overflow: hidden;
 }
 
 .feedback {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 50px;
     height: 100%;
-    padding: 10px;
     font-size: 20px;
     background-color: white;
     border: 1px #238136 solid;
 }
 
 .score {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 60px;
     height: 100%;
-    padding: 10px 0;
+    text-align: center;
+    font-family: inherit;
     font-size: 20px;
     background-color: white;
     border: 1px #238136 solid;
@@ -212,4 +221,7 @@ body {
     background-color: #6bffb8;
     padding: 0 3px;
     font-weight: bold;
+}
+.endmodal > .score {
+    height: 70px;
 }

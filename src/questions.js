@@ -8,6 +8,9 @@ export default function Questions() {
     const [feedback, setFeedback] = useState("❓");
     const [score, setScore] = useState(0);
     const [correct, setCorrect] = useState(true);
+    const [modalvisible, setModalVisible] = useState(true);
+    const [endHeader, setEndHeader] = useState("");
+    const [endText, setEndText] = useState("");
 
     let i = score;
 
@@ -36,13 +39,27 @@ export default function Questions() {
             setTestQuestions(testquestions);
         } else {
             setQuestion("");
+            setModalVisible(true);
+
+            if (score == 10) {
+                setEndHeader("Excellent!");
+                setEndText(
+                    "Congratulations! You got all ten questions correct"
+                );
+            } else if (score == 8 || score == 9) {
+                setEndHeader("Well done!");
+                setEndText("Great score!");
+            } else if (score == 6 || score == 7) {
+                setEndHeader("Good Effort!");
+                setEndText("You're getting there! Keep practicing");
+            } else if (score < 6 && score > 2) {
+                setEndHeader("Not bad!");
+                setEndText("Prepositions are hard. Keep practicing");
+            } else {
+                setEndHeader("Oh dear!");
+                setEndText("You need more practice");
+            }
         }
-
-        // else {
-        //     console.log("do something");
-        // }
-
-        //TO DO: if testquestion =[], render end of test (final score??)
     }
 
     function submit() {
@@ -69,7 +86,7 @@ export default function Questions() {
         }
     }
 
-    function again() {
+    function tryAgain() {
         setFeedback("❓");
         document.getElementById("answer").value = "";
     }
@@ -84,11 +101,10 @@ export default function Questions() {
         //TO DO: add hidden field for display?
     }
 
-    function end() {
-        console.log("end test clicked");
-    }
-    function closeModal() {
-        console.log("close modal clicked");
+    function playAgain() {
+        console.log("playAgain clicked");
+        setModalVisible(false);
+        //useEffect();
     }
 
     return (
@@ -112,30 +128,28 @@ export default function Questions() {
                             placeholder="type answer here..."
                         />
 
-                        <button className="feedback">{feedback}</button>
-                        <button className="score">{score}/10</button>
+                        <div className="feedback">{feedback}</div>
+                        <div className="score">{score}/10</div>
                     </div>
                     <div className="nav-buttons">
                         <button onClick={submit}>Submit answer</button>
                         {!correct && (
                             <>
-                                <button onClick={again}>Try Again</button>
+                                <button onClick={tryAgain}>Try Again</button>
                                 <button onClick={show}>Show answer</button>
                             </>
                         )}
                         {testquestions.length > 1 && (
                             <button onClick={next}>Next question</button>
                         )}
-                        {testquestions.length <= 1 && (
+                        {testquestions.length < 1 && modalvisible && (
                             <div className="endmodal">
-                                <p className="modalX" onClick={closeModal}>
-                                    X
-                                </p>
-                                Testing end modal
+                                <h2>{endHeader}</h2>
+                                <div className="score">{score}/10</div>
+                                <p>{endText}</p>
+                                <button onClick={playAgain}>Play again?</button>
                             </div>
                         )}
-
-                        {/* <button onClick={end}>End Test</button> */}
                     </div>
                 </div>
             )}
