@@ -5,6 +5,7 @@ import axios from "./axios";
 export default function Questions() {
     const [testquestions, setTestQuestions] = useState([]);
     const [question, setQuestion] = useState({});
+    const [feedback, setFeedback] = useState("❓");
 
     useEffect(() => {
         axios
@@ -20,41 +21,50 @@ export default function Questions() {
     console.log("test questions", testquestions);
 
     function next() {
+        setFeedback("❓");
+        document.getElementById("answer").value = "";
+
         testquestions.shift();
 
         setQuestion(testquestions[0]);
 
         setTestQuestions(testquestions);
+
+        //TO DO: if testquestion =[], render end of test (final score??)
     }
 
     function submit() {
         console.log("clicked on submit");
-        let answer = document.getElementById("answer").value;
+        let answer = document.getElementById("answer").value.toLowerCase();
         console.log("submit info", answer);
 
-        let ans = answer.toLowerCase();
         let quans = question.answer.toLowerCase();
 
-        if (ans === quans) {
+        if (answer === quans) {
             console.log("success");
+            setFeedback("✔️");
 
             //if correct, render tick in feedback (and update score)
             // -- feedback needs conditional
             // -- work out how to do score (see c4?)
         } else {
             console.log("failure");
+            setFeedback("❌");
             // if incorrect, render x in feedback
         }
-
-        document.getElementById("answer").value = "";
     }
 
     function show() {
         console.log("clicked on show answer");
-        //TO DO: display question.first, question.answer, question.second
-        //decide where - hidden field or replace contents of German field?
+
+        document.getElementById(
+            "answer"
+        ).value = `${question.first} ${question.answer} ${question.second}`;
+
+        //TO DO: add hidden field for display?
     }
-    console.log("testquestions0", testquestions[0]);
+
+    //console.log("testquestions0", testquestions[0]);
 
     return (
         <div className="question-container">
@@ -70,12 +80,14 @@ export default function Questions() {
                         </p>
                     </div>
                     <div className="answer-container">
-                        <textarea
-                            name="answer"
+                        <input
                             id="answer"
+                            type="text"
+                            name="answer"
                             placeholder="type answer here..."
                         />
-                        <button className="feedback">X or tick</button>
+
+                        <button className="feedback">{feedback}</button>
                     </div>
                     <div className="nav-buttons">
                         <button onClick={submit}>Submit answer</button>

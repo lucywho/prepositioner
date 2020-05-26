@@ -76,7 +76,6 @@ body {
 
 .question-container {
     height: 100%;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -132,19 +131,31 @@ body {
     background-color: #2a6041;
 }
 
-textarea {
-    min-width: 200px;
+.answer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    height: 70px;
+}
+
+#answer {
+    width: 300px;
+    height: 64px;
     border: hsl(132, 57%, 32%) 1px solid;
-    height: 50px;
-    padding: 5px;
-    margin: 5px 0;
+    padding: 5px 0 0 5px;
+    text-align: center;
+    font-family: inherit;
+    font-size: 16px;
+    overflow: hidden;
 }
 
 .feedback {
-    width: 50px;
-    height: 50px;
-    padding: 5px;
-    margin: 5px;
+    width: 60px;
+    height: 100%;
+    padding: 10px;
+
+    font-size: 25px;
     background-color: white;
     border: 1px #238136 solid;
 }

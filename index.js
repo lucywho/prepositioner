@@ -62,14 +62,12 @@ if (process.env.NODE_ENV != "production") {
 // });
 
 app.get("/testquestions", (req, res) => {
-    console.log("/testquestions route hit");
-
-    for (var numbers = [], i = 1; i < 42; ++i) {
+    for (var numbers = [], i = 1; i < 42; i++) {
         numbers[i] = i;
     }
 
     function shuffle(array) {
-        var temp,
+        let temp,
             current,
             upper = array.length;
         if (upper)
