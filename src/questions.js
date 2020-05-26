@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from "./axios";
 
 export default function Questions() {
-    const [testquestions, setTestQuestions] = useState("");
+    const [testquestions, setTestQuestions] = useState([]);
+    const [question, setQuestion] = useState({});
 
     useEffect(() => {
         axios
@@ -15,6 +16,7 @@ export default function Questions() {
                 // );
 
                 setTestQuestions(response.data.results.rows); //array of 10 objects
+                setQuestion(response.data.results.rows[0]);
             })
             .catch((err) => {
                 console.log("error in settestqs", err);
@@ -22,15 +24,18 @@ export default function Questions() {
     }, []);
     console.log("test questions", testquestions);
 
-    let question = testquestions[0];
-    let i = 1;
+    // let question = testquestions[0];
+    // let i = 1;
 
     function next() {
         console.log("clicked on next");
-        question = testquestions[i];
-        console.log("question after next", question);
-        i++;
 
+        testquestions.shift();
+        // console.log("question after next", question);
+
+        setQuestion(testquestions[0]);
+
+        setTestQuestions(testquestions);
         //TO DO: how to update render with new question?
     }
 
@@ -49,6 +54,7 @@ export default function Questions() {
         //TO DO: display question.first, question.answer, question.second
         //decide where - hidden field or replace contents of German field?
     }
+    console.log("testquestions", testquestions, testquestions[0]);
 
     return (
         <div className="question-container">
