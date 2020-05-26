@@ -10,11 +10,6 @@ export default function Questions() {
         axios
             .get(`/testquestions`)
             .then((response) => {
-                // console.log(
-                //     "/testquestions response",
-                //     response.data.results.rows
-                // );
-
                 setTestQuestions(response.data.results.rows); //array of 10 objects
                 setQuestion(response.data.results.rows[0]);
             })
@@ -24,29 +19,34 @@ export default function Questions() {
     }, []);
     console.log("test questions", testquestions);
 
-    // let question = testquestions[0];
-    // let i = 1;
-
     function next() {
-        console.log("clicked on next");
-
         testquestions.shift();
-        // console.log("question after next", question);
 
         setQuestion(testquestions[0]);
 
         setTestQuestions(testquestions);
-        //TO DO: how to update render with new question?
     }
 
     function submit() {
         console.log("clicked on submit");
-        //TO DO: capture input, convert to lowercase
-        //compare with question.answer
-        //if correct, render tick in feedback (and update score)
-        // -- feedback needs conditional
-        // -- work out how to do score (see c4?)
-        // if incorrect, render x in feedback
+        let answer = document.getElementById("answer").value;
+        console.log("submit info", answer);
+
+        let ans = answer.toLowerCase();
+        let quans = question.answer.toLowerCase();
+
+        if (ans === quans) {
+            console.log("success");
+
+            //if correct, render tick in feedback (and update score)
+            // -- feedback needs conditional
+            // -- work out how to do score (see c4?)
+        } else {
+            console.log("failure");
+            // if incorrect, render x in feedback
+        }
+
+        document.getElementById("answer").value = "";
     }
 
     function show() {
@@ -54,7 +54,7 @@ export default function Questions() {
         //TO DO: display question.first, question.answer, question.second
         //decide where - hidden field or replace contents of German field?
     }
-    console.log("testquestions", testquestions, testquestions[0]);
+    console.log("testquestions0", testquestions[0]);
 
     return (
         <div className="question-container">
@@ -72,6 +72,7 @@ export default function Questions() {
                     <div className="answer-container">
                         <textarea
                             name="answer"
+                            id="answer"
                             placeholder="type answer here..."
                         />
                         <button className="feedback">X or tick</button>
