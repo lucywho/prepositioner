@@ -62,28 +62,27 @@ export default function Questions() {
 
             if (testquestions.length == 0) {
                 console.log("array length is 0");
-                setQuestion("");
+                //setQuestion("");
                 setModalVisible(true);
 
-                console.log("visible", modalvisible);
-                // if (score == 10) {
-                //     setEndHeader("Excellent!");
-                //     setEndText(
-                //         "Congratulations! You got all ten questions correct"
-                //     );
-                // } else if (score == 8 || score == 9) {
-                //     setEndHeader("Well done!");
-                //     setEndText("Great score!");
-                // } else if (score == 6 || score == 7) {
-                //     setEndHeader("Good Effort!");
-                //     setEndText("You're getting there! Keep practicing");
-                // } else if (score < 6 && score > 2) {
-                //     setEndHeader("Not bad!");
-                //     setEndText("Prepositions are hard. Keep practicing");
-                // } else {
-                //     setEndHeader("Oh dear!");
-                //     setEndText("You need more practice");
-                // }
+                if (score == 10) {
+                    setEndHeader("Excellent!");
+                    setEndText(
+                        "Congratulations! You got all ten questions correct"
+                    );
+                } else if (score == 8 || score == 9) {
+                    setEndHeader("Well done!");
+                    setEndText("Great score!");
+                } else if (score == 6 || score == 7) {
+                    setEndHeader("Good Effort!");
+                    setEndText("You're getting there! Keep practicing");
+                } else if (score < 6 && score > 2) {
+                    setEndHeader("Not bad!");
+                    setEndText("Prepositions are hard. Keep practicing");
+                } else {
+                    setEndHeader("Oh dear!");
+                    setEndText("You need more practice");
+                }
             }
         } else {
             setFeedback("❌");
