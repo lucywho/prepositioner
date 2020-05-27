@@ -42,13 +42,13 @@ export default function Questions() {
 
     function submit() {
         console.log("clicked on submit");
+
         let answer = document.getElementById("answer").value.toLowerCase();
         //console.log("submit info", answer);
 
         let quans = question.answer.toLowerCase();
 
         if (answer === quans) {
-            console.log("success");
             setFeedback("✔️");
 
             i++;
@@ -56,38 +56,39 @@ export default function Questions() {
 
             setScore(i);
             setCorrect(true);
+
+            testquestions.shift();
+            console.log("true testquestions length", testquestions.length);
+
+            if (testquestions.length == 0) {
+                console.log("array length is 0");
+                setQuestion("");
+                setModalVisible(true);
+
+                console.log("visible", modalvisible);
+                // if (score == 10) {
+                //     setEndHeader("Excellent!");
+                //     setEndText(
+                //         "Congratulations! You got all ten questions correct"
+                //     );
+                // } else if (score == 8 || score == 9) {
+                //     setEndHeader("Well done!");
+                //     setEndText("Great score!");
+                // } else if (score == 6 || score == 7) {
+                //     setEndHeader("Good Effort!");
+                //     setEndText("You're getting there! Keep practicing");
+                // } else if (score < 6 && score > 2) {
+                //     setEndHeader("Not bad!");
+                //     setEndText("Prepositions are hard. Keep practicing");
+                // } else {
+                //     setEndHeader("Oh dear!");
+                //     setEndText("You need more practice");
+                // }
+            }
         } else {
-            console.log("failure");
             setFeedback("❌");
             setCorrect(false);
         }
-
-        testquestions.shift();
-        console.log("testquestions length", testquestions.length);
-
-        // if ((testquestions.length = 0)) {
-        //     setQuestion("");
-        //     setModalVisible(true);
-
-        //     if (score == 10) {
-        //         setEndHeader("Excellent!");
-        //         setEndText(
-        //             "Congratulations! You got all ten questions correct"
-        //         );
-        //     } else if (score == 8 || score == 9) {
-        //         setEndHeader("Well done!");
-        //         setEndText("Great score!");
-        //     } else if (score == 6 || score == 7) {
-        //         setEndHeader("Good Effort!");
-        //         setEndText("You're getting there! Keep practicing");
-        //     } else if (score < 6 && score > 2) {
-        //         setEndHeader("Not bad!");
-        //         setEndText("Prepositions are hard. Keep practicing");
-        //     } else {
-        //         setEndHeader("Oh dear!");
-        //         setEndText("You need more practice");
-        //     }
-        // }
     }
 
     function tryAgain() {
@@ -101,6 +102,7 @@ export default function Questions() {
         document.getElementById(
             "answer"
         ).value = `${question.first} ${question.answer} ${question.second}`;
+        testquestions.shift();
 
         //TO DO: add hidden field for display?
     }
