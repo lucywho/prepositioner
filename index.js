@@ -62,29 +62,17 @@ if (process.env.NODE_ENV != "production") {
 // });
 
 app.get("/testquestions", (req, res) => {
-    for (var numbers = [], i = 1; i < 42; i++) {
-        numbers[i] = i;
-    }
+    let numbers = [];
 
-    function shuffle(array) {
-        let temp,
-            current,
-            upper = array.length;
-        if (upper)
-            while (--upper) {
-                current = Math.floor(Math.random() * (upper + 1));
-                temp = array[current];
-                array[current] = array[upper];
-                array[upper] = temp;
-            }
-        return array;
+    for (let i = 0; i < 41; i++) {
+        if (numbers.length < i) {
+            let num = Math.floor(Math.random() * 40 + 1);
+            numbers.push(num);
+        }
     }
-    numbers = shuffle(numbers);
 
     //***CHANGE THIS BACK TO 10 WHEN FINISHED TESTING!***//
     questions = numbers.slice([0], [3]);
-
-    // console.log("questions: ", questions);
 
     db.getQuestions(questions)
         .then((results) => {

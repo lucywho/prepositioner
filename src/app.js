@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "./axios";
+import React from "react";
+
 import { BrowserRouter, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Questions from "./questions";
@@ -7,10 +7,6 @@ import MiniLogo from "./minilogo";
 import Splash from "./splash";
 
 export default function App() {
-    useEffect(() => {
-        //does this page need to do anything?
-    });
-
     return (
         <BrowserRouter>
             <div className="app-container">
