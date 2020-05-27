@@ -24,15 +24,16 @@ body {
     flex-direction: wrap;
     justify-content: space-between;
     height: 15vh;
+    /* background-image: linear-gradient(#238136, #91e0c3); */
 }
 
 .mini-logo {
-    height: 100px;
+    height: 15vh;
 }
 
 /*app contents*/
 .app-contents {
-    height: 84.5vh;
+    height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,37 +93,6 @@ body {
     }
 }
 
-.answer-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 5px;
-    height: 70px;
-}
-
-.nav-buttons {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-buttons button {
-    font-family: inherit;
-    font-weight: bold;
-    height: 40px;
-    padding: 5px;
-    background-color: white;
-    border: 1px #238136 solid;
-}
-
-.nav-buttons button:hover {
-    background-color: #6bffb8;
-}
-
 .German,
 .English {
     font-family: inherit;
@@ -152,12 +122,20 @@ strong {
     animation-duration: 1s;
 }
 
+.answer-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    height: 50px;
+}
+
 #answer {
     width: 250px;
-    min-height: 64px;
-    height: fit-content;
+    height: 100%;
     border: hsl(132, 57%, 32%) 1px solid;
-    padding: 5px 0 0 5px;
+    padding: 0px 0 0 5px;
     text-align: center;
     font-family: inherit;
     font-size: 18px;
@@ -179,13 +157,35 @@ strong {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 60px;
+    width: 50px;
     height: 100%;
     text-align: center;
     font-family: inherit;
     font-size: 20px;
     background-color: white;
     border: 1px #238136 solid;
+}
+
+.nav-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-buttons button {
+    font-family: inherit;
+    font-weight: bold;
+    height: 40px;
+    padding: 5px;
+    background-color: white;
+    border: 1px #238136 solid;
+}
+
+.nav-buttons button:hover {
+    background-color: #6bffb8;
 }
 
 /*end of test modal*/
