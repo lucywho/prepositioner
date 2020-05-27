@@ -7,6 +7,7 @@ body {
     min-height: 100vh;
     font-family: "Roboto", sans-serif;
     background-color: #91e0c3;
+    color: #238136;
 }
 
 #startelem {
@@ -78,8 +79,17 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    animation: arrive;
+    animation: starttest;
     animation-duration: 1s;
+}
+
+@keyframes starttest {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .answer-container {
@@ -116,25 +126,18 @@ body {
 .German,
 .English {
     font-family: inherit;
-    min-width: 450px;
+    width: 450px;
+    word-wrap: break-word;
+    text-align: center;
     border: #238136 5px double;
     background-color: white;
     font-size: 20px;
-    height: 50px;
+    min-height: 50px;
     padding: 5px;
     margin: 10px 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
-}
-
-@keyframes arrive {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
 }
 
 .English {
@@ -143,16 +146,21 @@ body {
     border: whitesmoke 5px double;
 }
 
+strong {
+    color: #e2292f;
+    animation: starttest;
+    animation-duration: 1s;
+}
+
 #answer {
     width: 250px;
-    height: 64px;
+    min-height: 64px;
+    height: fit-content;
     border: hsl(132, 57%, 32%) 1px solid;
     padding: 5px 0 0 5px;
     text-align: center;
-    word-wrap: normal;
     font-family: inherit;
     font-size: 18px;
-    overflow: hidden;
 }
 
 .feedback {
@@ -183,7 +191,7 @@ body {
 /*end of test modal*/
 .endmodal {
     font-family: inherit;
-    background-color: #6bffb8;
+    background-color: #7cfef0;
     position: absolute;
     top: 10px;
     bottom: 10px;
@@ -195,6 +203,7 @@ body {
     opacity: 95%;
     display: flex;
     flex-direction: column;
+    padding: 20px 0;
     justify-content: space-around;
     align-items: center;
     overflow: auto;
@@ -210,17 +219,33 @@ body {
     }
 }
 
-.modalX {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    border: 1px solid #238136;
-    background-color: #6bffb8;
-    padding: 0 3px;
-    font-weight: bold;
-}
 .endmodal > .score {
     height: 70px;
+    width: fit-content;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+.endmodal > h2 {
+    color: #238136;
+    font-family: inherit;
+    font-size: 40px;
+}
+
+.endmodal p {
+    color: #238136;
+    font-family: inherit;
+    font-size: 30px;
+}
+
+.endmodal button {
+    font-family: inherit;
+    color: inherit;
+    font-size: 30px;
+    font-weight: bold;
+    height: fit-content;
+    min-height: 40px;
+    padding: 15px;
+    background-color: whitesmoke;
+    border: 1px #238136 solid;
 }

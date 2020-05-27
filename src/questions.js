@@ -5,9 +5,10 @@ import axios from "./axios";
 export default function Questions() {
     const [testquestions, setTestQuestions] = useState([]);
     const [question, setQuestion] = useState({});
-    const [feedback, setFeedback] = useState("❓");
+    const [feedback, setFeedback] = useState("❔");
     const [score, setScore] = useState(0);
     const [correct, setCorrect] = useState(true);
+    const [showanswer, setShowAnswer] = useState(false);
     const [modalvisible, setModalVisible] = useState(false);
     const [endHeader, setEndHeader] = useState("");
     const [endText, setEndText] = useState("");
@@ -29,7 +30,8 @@ export default function Questions() {
     console.log("testquestions array", testquestions);
 
     function next() {
-        setFeedback("❓");
+        setFeedback("❔");
+        setShowAnswer(false);
         document.getElementById("answer").value = "";
         setCorrect(true);
 
@@ -97,10 +99,8 @@ export default function Questions() {
 
     function show() {
         console.log("clicked on show answer");
+        setShowAnswer(true);
 
-        document.getElementById(
-            "answer"
-        ).value = `${question.first} ${question.answer} ${question.second}`;
         testquestions.shift();
 
         //TO DO: add hidden field for display?
@@ -120,22 +120,32 @@ export default function Questions() {
                         <p>{question.trans}</p>
                     </div>
                     <div className="German">
-                        <p>
-                            {" "}
-                            {question.first} {"___"} {question.second}
-                        </p>
+                        {!showanswer && (
+                            <p>
+                                {question.first} {"___"} {question.second}
+                            </p>
+                        )}
+                        {showanswer && (
+                            <p>
+                                {question.first}{" "}
+                                <strong>{question.answer}</strong>{" "}
+                                {question.second}
+                            </p>
+                        )}
                     </div>
+
                     <div className="answer-container">
                         <input
                             id="answer"
                             type="text"
                             name="answer"
-                            placeholder="type answer here..."
+                            placeholder="type your answer here..."
                         />
 
                         <div className="feedback">{feedback}</div>
                         <div className="score">{score}/10</div>
                     </div>
+
                     <div className="nav-buttons">
                         <button onClick={submit}>Submit answer</button>
                         {!correct && (
@@ -147,10 +157,11 @@ export default function Questions() {
                         {testquestions.length > 0 && (
                             <button onClick={next}>Next question</button>
                         )}
+
                         {modalvisible && (
                             <div className="endmodal">
                                 <h2>{endHeader}</h2>
-                                <div className="score">{score}/10</div>
+                                <div className="score">{score} / 10</div>
                                 <p>{endText}</p>
                                 <button onClick={playAgain}>Play again?</button>
                             </div>
