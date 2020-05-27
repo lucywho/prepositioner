@@ -115,7 +115,7 @@ export default function Questions() {
     return (
         <div className="question-container">
             {question && (
-                <div>
+                <div className="questions">
                     <div className="English">
                         <p>{question.trans}</p>
                     </div>
@@ -169,6 +169,7 @@ export default function Questions() {
                     </div>
                 </div>
             )}
+            ;
         </div>
     );
 }
