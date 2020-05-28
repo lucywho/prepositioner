@@ -54,17 +54,16 @@ export default function Questions() {
             setFeedback("✔️");
 
             i++;
-            //console.log("score", i);
 
             setScore(i);
             setCorrect(true);
 
             testquestions.shift();
-            console.log("true testquestions length", testquestions.length);
+            //console.log("true testquestions length", testquestions.length);
 
             if (testquestions.length == 0) {
                 console.log("array length is 0");
-                //setQuestion("");
+
                 setModalVisible(true);
 
                 if (score == 10) {
@@ -102,13 +101,12 @@ export default function Questions() {
         setShowAnswer(true);
 
         testquestions.shift();
-
-        //TO DO: add hidden field for display?
     }
 
     function playAgain() {
         console.log("playAgain clicked");
         setModalVisible(false);
+        setQuestion("");
         document.location.reload();
     }
 
@@ -147,13 +145,15 @@ export default function Questions() {
                     </div>
 
                     <div className="nav-buttons">
-                        <button onClick={submit}>Submit answer</button>
-                        {!correct && (
+                        <button onClick={submit}>Submit</button>
+                        {!correct && !showanswer && (
                             <>
                                 <button onClick={tryAgain}>Try Again</button>
+
                                 <button onClick={show}>Show answer</button>
                             </>
                         )}
+
                         {testquestions.length > 0 && (
                             <button onClick={next}>Next question</button>
                         )}
