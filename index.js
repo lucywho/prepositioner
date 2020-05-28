@@ -62,8 +62,10 @@ app.get("/testquestions", (req, res) => {
         }
     }
 
-    //***CHANGE THIS BACK TO 10 WHEN FINISHED TESTING!***//
-    questions = numbers.slice([0], [10]);
+    let uniquenumbers = new Set(numbers);
+    numbers = Array.from(uniquenumbers);
+
+    let questions = numbers.slice([0], [10]);
 
     db.getQuestions(questions)
         .then((results) => {
