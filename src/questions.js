@@ -13,6 +13,7 @@ export default function Questions() {
     const [score, setScore] = useState(0);
     const [correct, setCorrect] = useState(true);
     const [showanswer, setShowAnswer] = useState(false);
+    const [endbutton, setEndButton] = useState(false);
     const [modalvisible, setModalVisible] = useState(false);
     const [endHeader, setEndHeader] = useState("");
     const [endText, setEndText] = useState("");
@@ -31,7 +32,7 @@ export default function Questions() {
             });
     }, []);
 
-    console.log("testquestions array", testquestions);
+    //console.log("testquestions array", testquestions);
 
     function submit() {
         console.log("clicked on submit");
@@ -52,29 +53,37 @@ export default function Questions() {
 
             testquestions.shift();
 
-            if (testquestions.length == 0 && !showanswer) {
-                console.log("array length is 0");
+            if (testquestions.length == 0) {
+                console.log("array = 0"); //doesn't fire if showanswer = true
+                setEndButton(true);
 
-                setModalVisible(true);
+                // if (!showanswer) {
+                //     console.log("array = 0, showanswer = false"); //fires
 
-                if (score == 10) {
-                    setEndHeader("Excellent!");
-                    setEndText(
-                        "Congratulations! You got all ten questions correct"
-                    );
-                } else if (score == 8 || score == 9) {
-                    setEndHeader("Well done!");
-                    setEndText("Great score!");
-                } else if (score == 6 || score == 7) {
-                    setEndHeader("Good Effort!");
-                    setEndText("You're getting there! Keep practicing");
-                } else if (score < 6 && score > 2) {
-                    setEndHeader("Not bad!");
-                    setEndText("Prepositions are hard. Keep practicing");
-                } else {
-                    setEndHeader("Oh dear!");
-                    setEndText("You need more practice");
-                }
+                //     setModalVisible(true);
+
+                //     if (score == 10) {
+                //         setEndHeader("Excellent!");
+                //         setEndText(
+                //             "Congratulations! You got all ten questions correct"
+                //         );
+                //     } else if (score == 8 || score == 9) {
+                //         setEndHeader("Well done!");
+                //         setEndText("Great score!");
+                //     } else if (score == 6 || score == 7) {
+                //         setEndHeader("Good Effort!");
+                //         setEndText("You're getting there! Keep practicing");
+                //     } else if (score < 6 && score > 2) {
+                //         setEndHeader("Not bad!");
+                //         setEndText("Prepositions are hard. Keep practicing");
+                //     } else {
+                //         setEndHeader("Oh dear!");
+                //         setEndText("You need more practice");
+                //     }
+                // } else if (showanswer) {
+                //     console.log("array = 0, showanswer = true");
+                //     setEndButton(true);
+                // }
             }
         } else {
             setFeedback("❌");
@@ -107,36 +116,18 @@ export default function Questions() {
         console.log("clicked on show answer");
         document.getElementById("answer").value = "";
         setShowAnswer(true);
-        setNextButton(true);
 
         testquestions.shift();
 
         if (testquestions.length == 0) {
-            console.log("show: array length is 0");
-            setModalVisible(true);
-
-            if (score == 10) {
-                setEndHeader("Excellent!");
-                setEndText(
-                    "Congratulations! You got all ten questions correct"
-                );
-            } else if (score == 8 || score == 9) {
-                setEndHeader("Well done!");
-                setEndText("Great score!");
-            } else if (score == 6 || score == 7) {
-                setEndHeader("Good Effort!");
-                setEndText("You're getting there! Keep practicing");
-            } else if (score < 6 && score > 2) {
-                setEndHeader("Not bad!");
-                setEndText("Prepositions are hard. Keep practicing");
-            } else {
-                setEndHeader("Oh dear!");
-                setEndText("You need more practice");
-            }
+            setEndButton(true);
+        } else {
+            setNextButton(true);
         }
     }
 
     function endQuiz() {
+        console.log("endquiz clicked");
         setModalVisible(true);
 
         if (score == 10) {
@@ -216,17 +207,17 @@ export default function Questions() {
 
                     <div className="nav-buttons">
                         {testquestions.length > 0 && nextbutton && (
-                            <button onClick={next}>Next question</button>
+                            <button onClick={next}>Next Question</button>
                         )}
                         {!correct && !showanswer && (
                             <>
                                 <button onClick={tryAgain}>Try Again</button>
 
-                                <button onClick={show}>Show answer</button>
+                                <button onClick={show}>Show Answer</button>
                             </>
                         )}
 
-                        {testquestions.length == 0 && showanswer && (
+                        {endbutton && (
                             <button onClick={endQuiz}>End Quiz</button>
                         )}
 
