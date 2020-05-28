@@ -149,11 +149,14 @@ strong {
     font-size: 18px;
 }
 
-.feedback {
+.feedback,
+.score,
+.submit {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     width: 50px;
     height: 100%;
     font-size: 20px;
@@ -161,17 +164,15 @@ strong {
     border: 1px #238136 solid;
 }
 
-.score {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 50px;
-    height: 100%;
-    text-align: center;
-    font-family: inherit;
-    font-size: 20px;
-    background-color: white;
-    border: 1px #238136 solid;
+.submit {
+    width: fit-content;
+    padding: 0 5px;
+    border: #e2292f 2px solid;
+}
+
+.submit:hover,
+.submit:focus {
+    background-color: #6bffb8;
 }
 
 .nav-buttons {
@@ -192,7 +193,8 @@ strong {
     border: 1px #238136 solid;
 }
 
-.nav-buttons button:hover {
+.nav-buttons button:hover,
+.nav-buttons button:focus {
     background-color: #6bffb8;
 }
 

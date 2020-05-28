@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 
 import axios from "./axios";
 
+import { useDisplayModal } from "./hooks";
+
 export default function Questions() {
     const [testquestions, setTestQuestions] = useState([]);
     const [question, setQuestion] = useState({});
+    const [submitbutton, setSubmitButton] = useState(true);
+    const [nextbutton, setNextButton] = useState(false);
     const [feedback, setFeedback] = useState("❔");
     const [score, setScore] = useState(0);
     const [correct, setCorrect] = useState(true);
@@ -29,24 +33,12 @@ export default function Questions() {
 
     console.log("testquestions array", testquestions);
 
-    function next() {
-        setFeedback("❔");
-        setShowAnswer(false);
-        document.getElementById("answer").value = "";
-        setCorrect(true);
-
-        if (testquestions.length > 0) {
-            setQuestion(testquestions[0]);
-
-            setTestQuestions(testquestions);
-        }
-    }
-
     function submit() {
         console.log("clicked on submit");
+        setNextButton(true);
+        setSubmitButton(false);
 
         let answer = document.getElementById("answer").value.toLowerCase();
-        //console.log("submit info", answer);
 
         let quans = question.answer.toLowerCase();
 
@@ -59,9 +51,8 @@ export default function Questions() {
             setCorrect(true);
 
             testquestions.shift();
-            //console.log("true testquestions length", testquestions.length);
 
-            if (testquestions.length == 0) {
+            if (testquestions.length == 0 && !showanswer) {
                 console.log("array length is 0");
 
                 setModalVisible(true);
@@ -91,8 +82,23 @@ export default function Questions() {
         }
     }
 
+    function next() {
+        setFeedback("❔");
+        setShowAnswer(false);
+        setSubmitButton(true);
+        document.getElementById("answer").value = "";
+        setCorrect(true);
+
+        if (testquestions.length > 0) {
+            setQuestion(testquestions[0]);
+
+            setTestQuestions(testquestions);
+        }
+    }
+
     function tryAgain() {
         setFeedback("❓");
+        setSubmitButton(true);
         document.getElementById("answer").value = "";
     }
 
@@ -101,6 +107,51 @@ export default function Questions() {
         setShowAnswer(true);
 
         testquestions.shift();
+
+        if (testquestions.length == 0) {
+            console.log("show: array length is 0");
+            setModalVisible(true);
+
+            if (score == 10) {
+                setEndHeader("Excellent!");
+                setEndText(
+                    "Congratulations! You got all ten questions correct"
+                );
+            } else if (score == 8 || score == 9) {
+                setEndHeader("Well done!");
+                setEndText("Great score!");
+            } else if (score == 6 || score == 7) {
+                setEndHeader("Good Effort!");
+                setEndText("You're getting there! Keep practicing");
+            } else if (score < 6 && score > 2) {
+                setEndHeader("Not bad!");
+                setEndText("Prepositions are hard. Keep practicing");
+            } else {
+                setEndHeader("Oh dear!");
+                setEndText("You need more practice");
+            }
+        }
+    }
+
+    function endQuiz() {
+        setModalVisible(true);
+
+        if (score == 10) {
+            setEndHeader("Excellent!");
+            setEndText("Congratulations! You got all ten questions correct");
+        } else if (score == 8 || score == 9) {
+            setEndHeader("Well done!");
+            setEndText("Great score!");
+        } else if (score == 6 || score == 7) {
+            setEndHeader("Good Effort!");
+            setEndText("You're getting there! Keep practicing");
+        } else if (score < 6 && score > 2) {
+            setEndHeader("Not bad!");
+            setEndText("Prepositions are hard. Keep practicing");
+        } else {
+            setEndHeader("Oh dear!");
+            setEndText("You need more practice");
+        }
     }
 
     function playAgain() {
@@ -139,13 +190,31 @@ export default function Questions() {
                             name="answer"
                             placeholder="type your answer here..."
                         />
-
+                        {submitbutton && (
+                            <button className="submit" onClick={submit}>
+                                Submit
+                            </button>
+                        )}
+                        {!submitbutton && (
+                            <button
+                                className="submit"
+                                style={{
+                                    color: "lightgrey",
+                                    backgroundColor: "darkgrey",
+                                    borderColor: "darkgrey",
+                                }}
+                            >
+                                Submit
+                            </button>
+                        )}
                         <div className="feedback">{feedback}</div>
                         <div className="score">{score}/10</div>
                     </div>
 
                     <div className="nav-buttons">
-                        <button onClick={submit}>Submit</button>
+                        {testquestions.length > 0 && nextbutton && (
+                            <button onClick={next}>Next question</button>
+                        )}
                         {!correct && !showanswer && (
                             <>
                                 <button onClick={tryAgain}>Try Again</button>
@@ -154,8 +223,8 @@ export default function Questions() {
                             </>
                         )}
 
-                        {testquestions.length > 0 && (
-                            <button onClick={next}>Next question</button>
+                        {testquestions.length == 0 && showanswer && (
+                            <button onClick={endQuiz}>End Quiz</button>
                         )}
 
                         {modalvisible && (
