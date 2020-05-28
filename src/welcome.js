@@ -1,32 +1,16 @@
 import React from "react";
-import { HashRouter, Route } from "react-router-dom";
-import Registration from "./registration";
-import Login from "./login";
-import ResetPassword from "./reset";
+import { Link } from "react-router-dom";
+import Logo from "./logo";
 
-export default function Welcome() {
+export default function Splash() {
     return (
-        <div className="welcomediv">
-            <div className="welcomebanner">
-                <img id="splashimg" src="/image.jpg" />
-                <div className="welcometext">
-                    <h1>Welcome to</h1>
-                    <h1 className="Headline">
-                        <em>Prepositions!</em>
-                    </h1>
-
-                    <h3>Practice your German prepositions!</h3>
-                </div>
-            </div>
-            <div className="welcomecomponent">
-                <HashRouter>
-                    <div>
-                        <Route exact path="/" component={Registration} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/reset" component={ResetPassword} />
-                    </div>
-                </HashRouter>
-            </div>
+        <div className="splash">
+            <div className="splash-text">Welcome to</div>
+            <Logo />
+            <div className="splash-text"> Click Start Quiz to begin.</div>
+            <Link to="/questions">
+                <button id="start">Start Quiz</button>
+            </Link>
         </div>
     );
 }

@@ -99,12 +99,15 @@ export default function Questions() {
     function tryAgain() {
         setFeedback("❓");
         setSubmitButton(true);
+        setNextButton(false);
         document.getElementById("answer").value = "";
     }
 
     function show() {
         console.log("clicked on show answer");
+        document.getElementById("answer").value = "";
         setShowAnswer(true);
+        setNextButton(true);
 
         testquestions.shift();
 
