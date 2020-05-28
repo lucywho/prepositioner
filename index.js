@@ -52,15 +52,6 @@ if (process.env.NODE_ENV != "production") {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
-// app.get("/welcome", (req, res) => {
-//     console.log("/welcome route hit");
-//     if (req.session.userId) {
-//         res.redirect("/");
-//     } else {
-//         res.sendFile(__dirname + "/index.html");
-//     }
-// });
-
 app.get("/testquestions", (req, res) => {
     let numbers = [];
 
@@ -72,7 +63,7 @@ app.get("/testquestions", (req, res) => {
     }
 
     //***CHANGE THIS BACK TO 10 WHEN FINISHED TESTING!***//
-    questions = numbers.slice([0], [3]);
+    questions = numbers.slice([0], [10]);
 
     db.getQuestions(questions)
         .then((results) => {
