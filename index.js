@@ -65,12 +65,10 @@ app.get("/testquestions", (req, res) => {
     let uniquenumbers = new Set(numbers);
     numbers = Array.from(uniquenumbers);
 
-    let questions = numbers.slice([0], [4]);
+    let questions = numbers.slice([0], [10]);
 
     db.getQuestions(questions)
         .then((results) => {
-            // console.log("getquestions results: ", results.rows);
-
             res.json({ results });
         })
         .catch((err) => {

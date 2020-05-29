@@ -12,6 +12,7 @@ export default function Questions() {
     const [feedback, setFeedback] = useState("❔");
     const [score, setScore] = useState(0);
     const [correct, setCorrect] = useState(true);
+    const [showcorrect, setShowCorrect] = useState(false);
     const [showanswer, setShowAnswer] = useState(false);
     const [endbutton, setEndButton] = useState(false);
     const [modalvisible, setModalVisible] = useState(false);
@@ -32,10 +33,7 @@ export default function Questions() {
             });
     }, []);
 
-    //console.log("testquestions array", testquestions);
-
     function submit() {
-        console.log("clicked on submit");
         setNextButton(true);
         setSubmitButton(false);
 
@@ -50,6 +48,7 @@ export default function Questions() {
 
             setScore(i);
             setCorrect(true);
+            setShowCorrect(true);
 
             testquestions.shift();
 
@@ -65,7 +64,9 @@ export default function Questions() {
     function next() {
         setFeedback("❔");
         setShowAnswer(false);
+        setShowCorrect(false);
         setSubmitButton(true);
+
         document.getElementById("answer").value = "";
         setCorrect(true);
 
@@ -77,7 +78,7 @@ export default function Questions() {
     }
 
     function tryAgain() {
-        setFeedback("❓");
+        setFeedback("❔");
         setSubmitButton(true);
         setNextButton(false);
         document.getElementById("answer").value = "";
@@ -86,6 +87,7 @@ export default function Questions() {
     function show() {
         document.getElementById("answer").value = "";
         setShowAnswer(true);
+        setShowCorrect(false);
 
         testquestions.shift();
 
@@ -118,7 +120,6 @@ export default function Questions() {
     }
 
     function playAgain() {
-        console.log("playAgain clicked");
         setQuestion("");
         setModalVisible(false);
 
@@ -135,7 +136,7 @@ export default function Questions() {
                                 <p>{question.trans}</p>
                             </div>
                             <div className="German">
-                                {!showanswer && (
+                                {!showanswer && !showcorrect && (
                                     <p>
                                         {question.first} {"___"}{" "}
                                         {question.second}
@@ -145,6 +146,13 @@ export default function Questions() {
                                     <p>
                                         {question.first}{" "}
                                         <strong>{question.answer}</strong>{" "}
+                                        {question.second}
+                                    </p>
+                                )}
+                                {showcorrect && (
+                                    <p>
+                                        {question.first}{" "}
+                                        <span id="yes">{question.answer}</span>{" "}
                                         {question.second}
                                     </p>
                                 )}
@@ -188,7 +196,6 @@ export default function Questions() {
                         {!correct && !showanswer && (
                             <>
                                 <button onClick={tryAgain}>Try again</button>
-
                                 <button onClick={show}>Show answer</button>
                             </>
                         )}
