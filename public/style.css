@@ -326,3 +326,21 @@ input:focus::placeholder {
 #end {
     color: #e2292f;
 }
+
+@media screen and (min-width: 320px) and (max-width: 500px) {
+    .English,
+    .German {
+        width: 200px;
+        font-size: 20px;
+    }
+
+    #answer {
+        width: 200px;
+        font-size: 20px;
+    }
+
+    .nav-buttons button {
+        font-size: 15px;
+        min-width: fit-content;
+    }
+}
