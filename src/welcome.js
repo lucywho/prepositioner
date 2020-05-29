@@ -5,12 +5,11 @@ import Logo from "./logo";
 export default function Splash() {
     return (
         <div className="splash">
-            <div className="splash-text">Welcome to</div>
+            <h1>Welcome to</h1>
             <Logo />
-            <div className="splash-text">
-                {" "}
-                Ten questions to help you practice your German prepositions
-            </div>
+
+            <h2>Ten questions to help you practice your German prepositions</h2>
+
             <Link to="/questions">
                 <button id="start">Click here to to start the quiz</button>
             </Link>

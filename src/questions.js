@@ -129,24 +129,32 @@ export default function Questions() {
         <div className="question-container">
             {question && (
                 <div className="questions">
-                    <div className="English">
-                        <p>{question.trans}</p>
+                    <div className="display-container">
+                        <div className="question-answer">
+                            <div className="English">
+                                <p>{question.trans}</p>
+                            </div>
+                            <div className="German">
+                                {!showanswer && (
+                                    <p>
+                                        {question.first} {"___"}{" "}
+                                        {question.second}
+                                    </p>
+                                )}
+                                {showanswer && (
+                                    <p>
+                                        {question.first}{" "}
+                                        <strong>{question.answer}</strong>{" "}
+                                        {question.second}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                        <div className="feedback-score">
+                            <div className="feedback">{feedback}</div>
+                            <div className="score">{score}</div>
+                        </div>
                     </div>
-                    <div className="German">
-                        {!showanswer && (
-                            <p>
-                                {question.first} {"___"} {question.second}
-                            </p>
-                        )}
-                        {showanswer && (
-                            <p>
-                                {question.first}{" "}
-                                <strong>{question.answer}</strong>{" "}
-                                {question.second}
-                            </p>
-                        )}
-                    </div>
-
                     <div className="answer-container">
                         <input
                             id="answer"
@@ -171,8 +179,6 @@ export default function Questions() {
                                 Submit
                             </button>
                         )}
-                        <div className="feedback">{feedback}</div>
-                        <div className="score">{score}/10</div>
                     </div>
 
                     <div className="nav-buttons">
@@ -199,7 +205,7 @@ export default function Questions() {
                                 <button onClick={playAgain}>Play again?</button>
 
                                 <Link to="/welcome">
-                                    <button>I'm done!</button>
+                                    <button id="end">I'm done!</button>
                                 </Link>
                             </div>
                         )}
