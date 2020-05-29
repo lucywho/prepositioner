@@ -179,8 +179,8 @@ export default function Questions() {
                             <button
                                 className="submit"
                                 style={{
-                                    color: "lightgrey",
-                                    backgroundColor: "darkgrey",
+                                    color: "grey",
+                                    backgroundColor: "gainsboro",
                                     borderColor: "darkgrey",
                                 }}
                             >
@@ -190,7 +190,7 @@ export default function Questions() {
                     </div>
 
                     <div className="nav-buttons">
-                        {testquestions.length > 0 && nextbutton && (
+                        {testquestions.length > 0 && nextbutton && correct && (
                             <button onClick={next}>Next question</button>
                         )}
                         {!correct && !showanswer && (
