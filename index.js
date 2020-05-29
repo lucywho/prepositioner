@@ -69,8 +69,6 @@ app.get("/testquestions", (req, res) => {
 
     db.getQuestions(questions)
         .then((results) => {
-            // console.log("getquestions results: ", results.rows);
-
             res.json({ results });
         })
         .catch((err) => {
@@ -79,7 +77,7 @@ app.get("/testquestions", (req, res) => {
 }); //end of testquestions
 
 app.get("/", (req, res) => {
-    res.redirect("/splash");
+    res.redirect("/welcome");
 });
 
 app.get("*", function(req, res) {

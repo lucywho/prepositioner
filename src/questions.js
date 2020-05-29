@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import axios from "./axios";
 
-import { useDisplayModal } from "./hooks";
+import { Link } from "react-router-dom";
 
 export default function Questions() {
     const [testquestions, setTestQuestions] = useState([]);
@@ -12,6 +12,7 @@ export default function Questions() {
     const [feedback, setFeedback] = useState("❔");
     const [score, setScore] = useState(0);
     const [correct, setCorrect] = useState(true);
+    const [showcorrect, setShowCorrect] = useState(false);
     const [showanswer, setShowAnswer] = useState(false);
     const [endbutton, setEndButton] = useState(false);
     const [modalvisible, setModalVisible] = useState(false);
@@ -32,10 +33,7 @@ export default function Questions() {
             });
     }, []);
 
-    //console.log("testquestions array", testquestions);
-
     function submit() {
-        console.log("clicked on submit");
         setNextButton(true);
         setSubmitButton(false);
 
@@ -50,6 +48,7 @@ export default function Questions() {
 
             setScore(i);
             setCorrect(true);
+            setShowCorrect(true);
 
             testquestions.shift();
 
@@ -65,7 +64,9 @@ export default function Questions() {
     function next() {
         setFeedback("❔");
         setShowAnswer(false);
+        setShowCorrect(false);
         setSubmitButton(true);
+
         document.getElementById("answer").value = "";
         setCorrect(true);
 
@@ -77,7 +78,7 @@ export default function Questions() {
     }
 
     function tryAgain() {
-        setFeedback("❓");
+        setFeedback("❔");
         setSubmitButton(true);
         setNextButton(false);
         document.getElementById("answer").value = "";
@@ -86,6 +87,7 @@ export default function Questions() {
     function show() {
         document.getElementById("answer").value = "";
         setShowAnswer(true);
+        setShowCorrect(false);
 
         testquestions.shift();
 
@@ -101,24 +103,23 @@ export default function Questions() {
 
         if (score == 10) {
             setEndHeader("Excellent!");
-            setEndText("Congratulations! You got all ten questions correct");
+            setEndText("Congratulations! You got all ten questions correct!");
         } else if (score == 8 || score == 9) {
             setEndHeader("Well done!");
             setEndText("Great score!");
         } else if (score == 6 || score == 7) {
             setEndHeader("Good Effort!");
-            setEndText("You're getting there! Keep practicing");
+            setEndText("You're getting there! Keep practicing!");
         } else if (score < 6 && score > 2) {
             setEndHeader("Not bad!");
-            setEndText("Prepositions are hard. Keep practicing");
+            setEndText("Prepositions are hard. Keep practicing!");
         } else {
             setEndHeader("Oh dear!");
-            setEndText("You need more practice");
+            setEndText("You need more practice!");
         }
     }
 
     function playAgain() {
-        console.log("playAgain clicked");
         setQuestion("");
         setModalVisible(false);
 
@@ -129,30 +130,45 @@ export default function Questions() {
         <div className="question-container">
             {question && (
                 <div className="questions">
-                    <div className="English">
-                        <p>{question.trans}</p>
+                    <div className="display-container">
+                        <div className="question-answer">
+                            <div className="English">
+                                <p>{question.trans}</p>
+                            </div>
+                            <div className="German">
+                                {!showanswer && !showcorrect && (
+                                    <p>
+                                        {question.first} {"___"}{" "}
+                                        {question.second}
+                                    </p>
+                                )}
+                                {showanswer && (
+                                    <p>
+                                        {question.first}{" "}
+                                        <strong>{question.answer}</strong>{" "}
+                                        {question.second}
+                                    </p>
+                                )}
+                                {showcorrect && (
+                                    <p>
+                                        {question.first}{" "}
+                                        <span id="yes">{question.answer}</span>{" "}
+                                        {question.second}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                        <div className="feedback-score">
+                            <div className="score">{score}</div>
+                            <div className="feedback">{feedback}</div>
+                        </div>
                     </div>
-                    <div className="German">
-                        {!showanswer && (
-                            <p>
-                                {question.first} {"___"} {question.second}
-                            </p>
-                        )}
-                        {showanswer && (
-                            <p>
-                                {question.first}{" "}
-                                <strong>{question.answer}</strong>{" "}
-                                {question.second}
-                            </p>
-                        )}
-                    </div>
-
                     <div className="answer-container">
                         <input
                             id="answer"
                             type="text"
                             name="answer"
-                            placeholder="type your answer here..."
+                            placeholder="type your answer here"
                         />
                         {submitbutton && (
                             <button className="submit" onClick={submit}>
@@ -171,24 +187,21 @@ export default function Questions() {
                                 Submit
                             </button>
                         )}
-                        <div className="feedback">{feedback}</div>
-                        <div className="score">{score}/10</div>
                     </div>
 
                     <div className="nav-buttons">
                         {testquestions.length > 0 && nextbutton && (
-                            <button onClick={next}>Next Question</button>
+                            <button onClick={next}>Next question</button>
                         )}
                         {!correct && !showanswer && (
                             <>
-                                <button onClick={tryAgain}>Try Again</button>
-
-                                <button onClick={show}>Show Answer</button>
+                                <button onClick={tryAgain}>Try again</button>
+                                <button onClick={show}>Show answer</button>
                             </>
                         )}
 
                         {endbutton && (
-                            <button onClick={endQuiz}>End Quiz</button>
+                            <button onClick={endQuiz}>End quiz</button>
                         )}
 
                         {modalvisible && (
@@ -197,6 +210,10 @@ export default function Questions() {
                                 <div className="score">{score} / 10</div>
                                 <p>{endText}</p>
                                 <button onClick={playAgain}>Play again?</button>
+
+                                <Link to="/welcome">
+                                    <button id="end">I'm done!</button>
+                                </Link>
                             </div>
                         )}
                     </div>

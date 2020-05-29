@@ -1,7 +1,7 @@
 import React from "react";
 
 import { BrowserRouter, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 import Questions from "./questions";
 import MiniLogo from "./minilogo";
 import Splash from "./welcome";
