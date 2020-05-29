@@ -249,6 +249,8 @@ input:focus::placeholder {
     background-color: white;
     border: 1px #238136 solid;
     border-radius: 30px;
+    animation: starttest;
+    animation-duration: 1s;
 }
 
 .nav-buttons button:hover,

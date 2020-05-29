@@ -170,6 +170,7 @@ export default function Questions() {
                             name="answer"
                             placeholder="type your answer here"
                         />
+
                         {submitbutton && (
                             <button className="submit" onClick={submit}>
                                 Submit
@@ -190,7 +191,7 @@ export default function Questions() {
                     </div>
 
                     <div className="nav-buttons">
-                        {testquestions.length > 0 && nextbutton && correct && (
+                        {testquestions.length > 0 && nextbutton && (
                             <button onClick={next}>Next question</button>
                         )}
                         {!correct && !showanswer && (
