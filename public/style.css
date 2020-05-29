@@ -161,7 +161,7 @@ strong {
 .answer-container {
     width: 100%;
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     height: 70px;
 }

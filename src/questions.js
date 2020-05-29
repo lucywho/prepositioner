@@ -151,8 +151,8 @@ export default function Questions() {
                             </div>
                         </div>
                         <div className="feedback-score">
-                            <div className="feedback">{feedback}</div>
                             <div className="score">{score}</div>
+                            <div className="feedback">{feedback}</div>
                         </div>
                     </div>
                     <div className="answer-container">
