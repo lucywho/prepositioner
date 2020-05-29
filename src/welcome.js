@@ -7,9 +7,12 @@ export default function Splash() {
         <div className="splash">
             <div className="splash-text">Welcome to</div>
             <Logo />
-            <div className="splash-text"> Click Start Quiz to begin.</div>
+            <div className="splash-text">
+                {" "}
+                Ten questions to help you practice your German prepositions
+            </div>
             <Link to="/questions">
-                <button id="start">Start Quiz</button>
+                <button id="start">Click here to to start the quiz</button>
             </Link>
         </div>
     );

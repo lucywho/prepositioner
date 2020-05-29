@@ -65,7 +65,7 @@ app.get("/testquestions", (req, res) => {
     let uniquenumbers = new Set(numbers);
     numbers = Array.from(uniquenumbers);
 
-    let questions = numbers.slice([0], [10]);
+    let questions = numbers.slice([0], [4]);
 
     db.getQuestions(questions)
         .then((results) => {
@@ -79,7 +79,7 @@ app.get("/testquestions", (req, res) => {
 }); //end of testquestions
 
 app.get("/", (req, res) => {
-    res.redirect("/splash");
+    res.redirect("/welcome");
 });
 
 app.get("*", function(req, res) {

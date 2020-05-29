@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import axios from "./axios";
 
-import { useDisplayModal } from "./hooks";
+import { Link } from "react-router-dom";
 
 export default function Questions() {
     const [testquestions, setTestQuestions] = useState([]);
@@ -101,19 +101,19 @@ export default function Questions() {
 
         if (score == 10) {
             setEndHeader("Excellent!");
-            setEndText("Congratulations! You got all ten questions correct");
+            setEndText("Congratulations! You got all ten questions correct!");
         } else if (score == 8 || score == 9) {
             setEndHeader("Well done!");
             setEndText("Great score!");
         } else if (score == 6 || score == 7) {
             setEndHeader("Good Effort!");
-            setEndText("You're getting there! Keep practicing");
+            setEndText("You're getting there! Keep practicing!");
         } else if (score < 6 && score > 2) {
             setEndHeader("Not bad!");
-            setEndText("Prepositions are hard. Keep practicing");
+            setEndText("Prepositions are hard. Keep practicing!");
         } else {
             setEndHeader("Oh dear!");
-            setEndText("You need more practice");
+            setEndText("You need more practice!");
         }
     }
 
@@ -152,7 +152,7 @@ export default function Questions() {
                             id="answer"
                             type="text"
                             name="answer"
-                            placeholder="type your answer here..."
+                            placeholder="type your answer here"
                         />
                         {submitbutton && (
                             <button className="submit" onClick={submit}>
@@ -177,18 +177,18 @@ export default function Questions() {
 
                     <div className="nav-buttons">
                         {testquestions.length > 0 && nextbutton && (
-                            <button onClick={next}>Next Question</button>
+                            <button onClick={next}>Next question</button>
                         )}
                         {!correct && !showanswer && (
                             <>
-                                <button onClick={tryAgain}>Try Again</button>
+                                <button onClick={tryAgain}>Try again</button>
 
-                                <button onClick={show}>Show Answer</button>
+                                <button onClick={show}>Show answer</button>
                             </>
                         )}
 
                         {endbutton && (
-                            <button onClick={endQuiz}>End Quiz</button>
+                            <button onClick={endQuiz}>End quiz</button>
                         )}
 
                         {modalvisible && (
@@ -197,6 +197,10 @@ export default function Questions() {
                                 <div className="score">{score} / 10</div>
                                 <p>{endText}</p>
                                 <button onClick={playAgain}>Play again?</button>
+
+                                <Link to="/welcome">
+                                    <button>I'm done!</button>
+                                </Link>
                             </div>
                         )}
                     </div>

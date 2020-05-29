@@ -6,7 +6,8 @@
 body {
     min-height: 100vh;
     font-family: "Roboto", sans-serif;
-    background-color: #91e0c3;
+    /* background-color: #91e0c3; */
+    background-color: antiquewhite;
     color: #238136;
 }
 
@@ -29,6 +30,7 @@ body {
 
 .mini-logo {
     height: 15vh;
+    padding: 10px 0 0 10px;
 }
 
 /*app contents*/
@@ -58,16 +60,17 @@ body {
 }
 
 .splash-text {
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
 }
 
 #start {
     font-family: inherit;
-    font-size: 20px;
+    font-size: 25px;
     color: white;
     background-color: #238136;
-    height: 50px;
+    height: 100px;
+    width: 300px;
     padding: 5px 10px;
     border: whitesmoke 5px double;
 }
@@ -107,7 +110,7 @@ body {
     width: 450px;
     word-wrap: break-word;
     text-align: center;
-    border: #238136 5px double;
+    /* border: #238136 5px double; */
     background-color: white;
     font-size: 20px;
     min-height: 50px;
@@ -115,6 +118,8 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    border-radius: 30px;
+    box-shadow: 0 5px 5px #238136;
 }
 
 .English {
@@ -140,11 +145,26 @@ strong {
 #answer {
     width: 200px;
     height: 100%;
-    border: hsl(132, 57%, 32%) 1px solid;
+    border: #238036 1px solid;
     padding: 0px 0 0 5px;
     text-align: center;
     font-family: inherit;
-    font-size: 18px;
+    font-size: 15px;
+    border-radius: 30px;
+    box-shadow: 0 5px 5px #238136;
+    overflow: hidden;
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+#answer:focus {
+    background-color: #b3fad8;
+
+    color: #238036;
+    font-size: 25px;
+    outline: none;
 }
 
 .feedback,
@@ -160,17 +180,20 @@ strong {
     font-size: 20px;
     background-color: white;
     border: 1px #238136 solid;
+    border-radius: 30px;
+    box-shadow: 0 5px 5px #238136;
 }
 
 .submit {
     width: fit-content;
     padding: 0 5px;
-    border: #e2292f 2px solid;
+    border: #6bffb8 2px solid;
 }
 
 .submit:hover,
 .submit:focus {
     background-color: #6bffb8;
+    outline-style: hidden;
 }
 
 .nav-buttons {
