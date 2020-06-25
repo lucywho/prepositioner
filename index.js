@@ -86,6 +86,6 @@ app.get("*", function(req, res) {
 
 //_________SERVER LISTENING_______
 
-app.listen(8080, function() {
+app.listen(process.env.PORT || 8080, function() {
     console.log("prepositions server running");
 });
