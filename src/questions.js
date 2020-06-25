@@ -58,6 +58,7 @@ export default function Questions() {
         } else {
             setFeedback("❌");
             setCorrect(false);
+            setNextButton(false);
         }
     }
 
@@ -192,7 +193,9 @@ export default function Questions() {
 
                     <div className="nav-buttons">
                         {testquestions.length > 0 && nextbutton && (
-                            <button onClick={next}>Next question</button>
+                            <button className="next" onClick={next}>
+                                Next question
+                            </button>
                         )}
                         {!correct && !showanswer && (
                             <>
