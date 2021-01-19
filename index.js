@@ -12,7 +12,7 @@ app.use(compression());
 
 app.use(
     cookieSession({
-        secret: "It'll be fiiiine",
+        secret: "stashtastic",
         maxAge: 1000 * 60 * 60 * 24 * 14,
     })
 );
