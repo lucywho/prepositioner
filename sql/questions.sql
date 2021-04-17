@@ -1,30 +1,39 @@
-DROP TABLE IF EXISTS users, reset_codes, questions;
+DROP TABLE IF EXISTS  questions;
 
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE reset_codes(
-  id SERIAL PRIMARY KEY,
-  email VARCHAR NOT NULL,
-  code VARCHAR NOT NULL,
-  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
 CREATE TABLE questions(
   id SERIAL PRIMARY KEY,
   first VARCHAR,
   second VARCHAR,
   answer VARCHAR,
-  trans VARCHAR
+  trans VARCHAR,
+  gender VARCHAR
 );
 
-INSERT INTO questions (first, answer, second, trans) VALUES 
+INSERT INTO questions (first, answer, second, trans, gender) VALUES 
+('Das Ticket ist', 'bis', 'Sonntag gültig', 'The ticket is valid until Sunday', 'a'),
+('Der Spielplatz ist für Kinder', 'bis', '10 Jahre', 'The playground is for children up to 10 years old', 'a'),
+('Das Freibad ist von April', 'bis', 'September geöffnet', 'The outdoor pool is open from April to September', 'a'),
+('Ich schwimme', 'durch', 'den Fluss', 'I swim across the river', 'a'),
+('Sie laufen', 'durch', 'das Haus', 'They run through the house', 'a'),
+('Die Katze springt',  'durch',  'das Fenster',  'The cat jumps through the window', 'a'),
+('Sie geht die Straße', 'entlang', 'nach Norden', 'She walks north along the street', 'a'),
+('Du solltest', 'entlang', 'des Kanawegs laufen', 'You should run along the canal path', 'a'), 
+('Heute fließt der Fluss', 'entlang', 'der Südseite des Tals', 'Today, the river flows along the southern side of the valley', 'a'),
+('Ich habe etwas', 'für', 'den Mann', 'I have something for the man', 'a'),
+('Ich arbeite nur', 'für', 'Geld', 'I just work for the money', 'a'),
+('Er kauft einen Hotdog', 'für', 'seine Tochter', 'He buys a hotdog for his daughter', 'a'),
+('Das Herrenhaus ist', 'gegen', '200 Jahre alt', 'The manor house is about 200 years old', 'a'),
+('Wir kommen', 'gegen', 'Mittag an', 'We arrive about noon', 'a'),
+('Das Auto fuhr',  'gegen',  'den Baum',  'The car hit the tree', 'a'),
+('Sie kommt', 'ohne', 'die Kinder', 'She comes without the children', 'a'),
+('Er verlässt sein Zuhause', 'ohne', 'seine Tasche', 'a'),
+('Oma kann', 'ohne', 'Brille nicht lesen', 'Grandma can’t read without her glasses', 'a'),
+('Er bittet',  'um',  'die Adresse', 'He asks for the address', 'a'),
+('Die Familie sitzt',  'um',  'den Tisch',  'The family is sitting round the table', 'a'),
+('Ich werde', 'um', 'Mitternacht nach Hause kommen', 'a'),
+('Die Kinder weinen', 'um', 'ihre Mutter', 'The children cry for their mother', 'a'),
+('Er kümmert sich', 'um', 'seine kranke Frau', 'He cares for his sick wife', 'a'),
 ('Ich hänge das Bild','an', 'die Wand', 'I hang the picture on the wall'), 
 ('Das Bild hängt','an', 'der Wand', 'The picture is hanging on the wall'),
 ('Das Rathaus liegt', 'am', 'Marktplatz', 'The townhall is in the marketplace'),

@@ -4,6 +4,10 @@ const db = spicedPg(
         "postgres:postgres:postgres@localhost:5432/preps"
 );
 
+module.exports.getTotal = () => {
+    return db.query("SELECT id FROM questions ORDER BY ID DESC LIMIT 1");
+};
+
 module.exports.getQuestions = (questions) => {
     return db.query(
         `SELECT * FROM questions WHERE id IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,

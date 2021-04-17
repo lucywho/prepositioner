@@ -29,7 +29,7 @@ app.use(
 
 app.use(csurf());
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.cookie("mytoken", req.csrfToken());
     next();
 });
@@ -53,12 +53,24 @@ if (process.env.NODE_ENV != "production") {
 }
 
 app.get("/testquestions", (req, res) => {
+    let total;
+
+    db.getTotal()
+        .then((result) => {
+            total = result.rows[0].id;
+            console.log("total: ", total);
+        })
+        .catch((err) => {
+            console.log("error in getTotal", err);
+        });
+
     let numbers = [];
 
-    for (let i = 0; i < 41; i++) {
+    for (let i = 0; i < total; i++) {
         if (numbers.length < i) {
-            let num = Math.floor(Math.random() * 40 + 1);
+            let num = Math.floor(Math.random() * total + 1);
             numbers.push(num);
+            console.log("numbers", numbers);
         }
     }
 
@@ -80,12 +92,12 @@ app.get("/", (req, res) => {
     res.redirect("/welcome");
 });
 
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
     res.sendFile(__dirname + "/index.html");
 });
 
 //_________SERVER LISTENING_______
 
-app.listen(process.env.PORT || 8080, function() {
+app.listen(process.env.PORT || 8080, function () {
     console.log("prepositions server running");
 });
