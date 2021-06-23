@@ -1,4 +1,4 @@
-Graduation project for Spiced Academy full-Stack bootcamp.
+Originally my graduation project for Spiced Academy full-Stack bootcamp. 
 
 A game for practicing German prepositions.
 
